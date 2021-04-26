@@ -34,17 +34,15 @@ class User(Base):
     profile_picture = Column(String(250))
     username = Column(String(250))
     stories = Column(String(250), nullable=False)
-  
+    
 class Follower(Base):
     __tablename__ = 'follower'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    user_from_id = Column(String(250))
-    user_to_id= Column(String(250), nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User)
-
+    user_from_id = Column(Integer,ForeignKey('user.id'))
+    user_to_id= Column(Integer,ForeignKey('user.id'), nullable=False)
+   
 class Post(Base):
     __tablename__ = 'post'
     # Here we define columns for the table address.
